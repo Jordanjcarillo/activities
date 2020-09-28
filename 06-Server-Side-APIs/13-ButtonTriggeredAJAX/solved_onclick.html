@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Quoth the Giphy</title>
+</head>
+
+<body>
+  <div id="buttons">
+    <button onClick='getQuotes( "arnold schwarzenegger" )'>
+      I'll be back
+    </button>
+    <br />
+    <button onClick='getQuotes( "michael j fox" )'>
+      My happiness grows in direct proportion to my acceptance,
+      and in inverse proportion to my expectations.
+    </button>
+    <br />
+    <!-- added more buttons -->
+    <button onClick='getQuotes( "Lucille Ball" )'>
+      Love yourself first and everything else falls into line.
+    </button>
+    <br />
+    <button onClick='getQuotes("Taylor Swift" )'>
+      If you're horrible to me, I'm going to write a song about it,
+      and you won't like it. That's how I operate.
+    </button>
+    <br />
+    <button onClick='getQuotes( "Samuel Jackson" )'>
+      Far better is it to dare mighty things, to win glorious triumphs,
+      even though checkered by failure... than to rank with those poor spirits who
+      neither enjoy nor suffer much, because they live in a gray twilight that
+      knows not victory nor defeat.
+    </button>
+
+  </div>
+
+  <div id="gifs-appear-here">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    // add the person-data back into the HTML
+    function addQuoteToList( personData ){
+      // build the HTML
+      var html = `<div>
+        <p>Rating ${personData.rating}</p>
+        <img src='${personData.images.fixed_height.url}' />`
+
+      $("#gifs-appear-here").prepend( html )
+    }
+
+    // API call .. get the quote giffys, q=(person-name)
+    function getQuotes( person ){ 
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        person + "&api_key=dc6zaTOxFJmzC&limit=10"
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+        .then(function(response) {
+          console.log( `.. api response: `, response )
+          // the result list is in the 'data' field of the response
+          var results = response.data;
+
+          for (var i = 0; i < results.length; i++) {
+            addQuoteToList( results[i] )
+          }
+        });
+    }
+
+    // option 1: add event listener, and check the 'data-person' for the person
+    // option 2: add the onClick DIRECTLY into the person
+    // $("button").on("click", function() {
+    //   var person = $(this).attr("data-person");
+    //   getQuotes( person )
+    // });
+  </script>
+</body>
+
+</html>
+
