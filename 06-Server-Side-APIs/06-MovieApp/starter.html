@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Favorite Movies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Movie Search</h1>
+
+    <div id="buttons-view"></div>
+
+    <!-- This form will be where users input data about the movies -->
+    <form id="movie-form">
+      <label for="movie-input">Add a Movie Search Button</label>
+      <input type="text" id="movie-input"><br>
+
+      <!-- This button will trigger our AJAX call -->
+      <input id="add-movie" type="submit" value="Add Movie Search">
+    </form>
+
+    <!-- We'll be dumping our JSON contents in here -->
+    <div id="movie-view"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+      // this fetches the movie information
+      function getMovie( movieName ){
+        // get and show the movie
+      }
+
+      // this adds a movie button
+      function addMovieButton( movieName ){
+        // this movie to the DOM - #buttons-view
+      }
+
+
+      // event listeners
+      $("#add-movie").on("click", function(event) {
+        event.preventDefault()
+        var movie = $("#movie-input").val()
+
+        // call the add movie button with the movie
+      })
+
+      // starting initialization - showing a few movie buttons
+      addMovieButton( 'The Matrix' )
+      addMovieButton( 'Mr. Nobody' )
+    </script>
+  </div>
+</body>
+
+</html>
+

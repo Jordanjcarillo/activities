@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>The Magical Cat Button</title>
+</head>
+
+<body>
+  <button id="cat-button">magical cat button</button>
+  <div id="images">
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    //? explain: the function to get the giffy list and display them
+    function getGiffyList( search ){
+      //? explain: the actual API url called with the search term filled in
+      var queryURL = `https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=${search}`
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+
+        //? explain: the ASYNCRONOUS function called AFTER the result comes back from server
+        .then(function(response) {
+          // view the response with this:
+          console.log( `response.data: `, response.data )
+
+          //? explain: the image url found in the response data
+          var imageUrl = response.data.image_original_url;
+
+          //? explain: build the IMG element with the image-url
+          var catHtml = `<img src='${imageUrl}' alt='cat image' />`;
+
+          //? explain: pre-pend the actual html to the #images DIV
+          $("#images").prepend(catHtml);
+        });
+    }
+
+
+    $("#cat-button").on("click", function() {
+      //? explain: runs the getGiffyList function passing in 'cats' as the search term
+      getGiffyList( 'cats' )
+    });
+  </script>
+</body>
+
+</html>
+
