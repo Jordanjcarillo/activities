@@ -8,15 +8,29 @@
 
 <body>
   <div id="buttons">
-    <button data-person="arnold schwarzenegger">
+    <button data-person="arnold schwarzenegger" onClick="getQuotes(this.getAttribute('data-person'))">
       I'll be back
     </button>
-    <button data-person="michael j fox">
+    <button onClick='getQuotes("michael j fox")'>
       My happiness grows in direct proportion to my acceptance,
       and in inverse proportion to my expectations.
     </button>
 
+    <button data-person="newton" onClick="getQuotes(this.getAttribute('data-person'))">
+      Apple falls from tree
+    </button>
 
+    <button data-person="Simon Cowell">
+      Simon Cowell
+    </button>
+
+    <button data-person="Taylor Swift">
+      Taylor Swift
+    </button>
+
+    <button data-person="Davinci">
+      Davinci
+    </button>
   </div>
 
   <div id="gifs-appear-here">
@@ -36,6 +50,7 @@
 
     // API call .. get the quote giffys, q=(person-name)
     function getQuotes( person ){ 
+      console.log( `[getQuotes], person=`, person )
       var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         person + "&api_key=dc6zaTOxFJmzC&limit=10"
 
@@ -56,10 +71,10 @@
 
     // option 1: add event listener, and check the 'data-person' for the person
     // option 2: add the onClick DIRECTLY into the person
-    $("button").on("click", function() {
-      var person = $(this).attr("data-person");
-      getQuotes( person )
-    });
+    // $("button").on("click", function() {
+    //   var person = $(this).attr("data-person");
+    //   getQuotes( person )
+    // });
   </script>
 </body>
 
